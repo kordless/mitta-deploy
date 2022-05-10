@@ -52,9 +52,9 @@ def grub():
 
 	# set the window up to full height
 	size = driver.get_window_size()
-	width = driver.execute_script('return document.body.parentNode.scrollWidth')
+	# width = driver.execute_script('return document.body.parentNode.scrollWidth')
 	height = driver.execute_script('return document.body.parentNode.scrollHeight')
-	driver.set_window_size(width, height)
+	driver.set_window_size(1080, height)
 
 	# set the output and screenshot
 	filename = "%s.png" % random_string(23)
