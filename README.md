@@ -1,7 +1,7 @@
 # mitta-deploy
-This repository contains system dependencies to deploy a standalone crawling and indexing system for which may index website or other documents. The system may be configured to use various machine learning models to assist with tagging and classification tasks for documents stored in the system.
+This repository contains system dependencies to deploy a standalone crawling and indexing system onto Google Cloud. This system provides utilities to index websites or other documents. The system may be configured to use machine learning models which can assist with tagging and classification tasks for documents stored in the system.
 
-An optional paid front-end is available from Mitta Corp. for this system and runs on AppEngine.
+An optional paid front-end is available from [Mitta.us](https://mitta.us/) which runs on AppEngine.
 
 The following systems are managed with this repo:
 
