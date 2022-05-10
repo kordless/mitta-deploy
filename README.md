@@ -8,7 +8,7 @@ The following systems are managed with this repo:
 - **fastener**: manages solr instances
 - **solr**: deploys solr instances
 - **grub**: crawl and image a website
-- **mitta**: APIs to tie together above systems
+- **mitta-api**: APIs to tie together above systems
 
 ## Checkout
 Checkout the mitta-deploy repository to a cloud shell terminal on Google Cloud:
@@ -42,6 +42,6 @@ The Solr deployment deploys the Solr search engine. Instances run single node So
 ## Grub
 The Grub deployment uses a Selenium box for imaging and extracting data from websites. Gunicorn is used to provide some scalability.
 
-## Mitta
-The Mitta deployment provides thin API for managing Solr via the fastener deployment, as well as indexing documents crawled by the Grub systems. The Mitta deployment provides simple API calls to query Solr for documents, as well as passing documents into various machine learning models. The APIs allow for updating documents in Solr with any meta data received from models.
+## Mitta-API
+The Mitta-API deployment provides thin API for managing Solr via the fastener deployment, as well as indexing documents crawled by the Grub systems. The Mitta deployment provides simple API calls to query Solr for documents, as well as passing documents into various machine learning models. The APIs allow for updating documents in Solr with any meta data received from models.
 
