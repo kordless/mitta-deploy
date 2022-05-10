@@ -52,6 +52,7 @@ pip3 install httplib2
 pip3 install requests
 pip3 install gunicorn
 pip3 install setuptools
+pip3 install selenium
 
 apt-get update -y
 
@@ -64,13 +65,13 @@ cd /opt/temp/
 
 curl https://storage.googleapis.com/mitta-deploy/chromedriver.zip > chromedriver.zip
 dpkg -i google-chrome*.deb
-sudo apt-get install -f
+sudo apt-get install -f -y
+dpkg -i google-chrome*.deb
 
 curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
 unzip chromedriver.zip
 mv chromedriver /opt/mitta-deploy/grub/
 
-  
 cd /opt/mitta-deploy/grub/
 cp nginx.conf.grub /etc/nginx/nginx.conf
 
