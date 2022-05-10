@@ -41,7 +41,11 @@ apt-get install build-essential -y
 apt-get install python-dev -y
 apt-get install python-setuptools -y
 apt-get install python3-pip -y
+apt-get install -y libappindicator1 fonts-liberation
+apt-get install apache2-utils -y
+apt-get install nginx -y
 
+pip3 install --upgrade pip
 pip3 install flask
 pip3 install urllib3
 pip3 install httplib2
@@ -57,10 +61,27 @@ git clone https://github.com/kordless/mitta-deploy.git
 
 mkdir -p /opt/temp
 cd /opt/temp/
+
 curl https://storage.googleapis.com/mitta-deploy/chromedriver.zip > chromedriver.zip
+dpkg -i google-chrome*.deb
+sudo apt-get install -f
+
 curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
+unzip chromedriver.zip
+mv chromedriver /opt/mitta-deploy/grub/
 
+  
+cd /opt/mitta-deploy/grub/
+cp nginx.conf.grub /etc/nginx/nginx.conf
 
+python3 get_token.py grub
+
+source bidntoken
+echo $TOKEN >> /root/token
+
+systemctl restart nginx.service
+
+echo "starting grub"
 
 EOF
 )
@@ -73,6 +94,7 @@ gcloud compute instances create $NAME-$NEW_UUID \
 --boot-disk-type "pd-ssd" \
 --boot-disk-device-name "$NEW_UUID" \
 --service-account mitta-us@appspot.gserviceaccount.com \
+--scopes https://www.googleapis.com/auth/cloud-platform \
 --zone $ZONE \
 --labels type=grub \
 --tags mitta,grub,token-$TOKEN \
