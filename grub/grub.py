@@ -19,6 +19,8 @@ from flask import Flask, render_template, make_response, request, abort, send_fr
 # app up
 app = Flask(__name__)
 
+def random_string(size=6, chars=string.ascii_letters + string.digits):
+	return ''.join(random.choice(chars) for _ in range(size))
 
 # main route
 @app.route('/g', methods=['POST'])
