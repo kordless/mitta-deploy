@@ -1,5 +1,5 @@
 # mitta-deploy
-This repository contains system dependencies to deploy Mitta on-prem. The excluded component of this deployment is the Mitta code which runs on AppEngine.
+This repository contains system dependencies to deploy a standalone crawling and indexing system for websites and document. An optional paid front-end is available via Mitta and runs on AppEngine.
 
 The following systems are managed with this repo:
 
@@ -37,3 +37,8 @@ screen -X fastener
 The Solr deployment deploys the Solr search engine. Instances run single node Solr, which can create and manage multiple indexes/collections.
 
 ## Grub
+The Grub deployment uses a Selenium box for imaging and extracting data from websites. Gunicorn is used to provide some scalability.
+
+## Mitta
+The Mitta deployment provides thin API for managing Solr via the fastener deployment, as well as indexing documents crawled by the Grub systems. The Mitta deployment provides simple API calls to query Solr for documents, as well as passing documents into various machine learning models. The APIs allow for updating documents in Solr with any meta data received from models.
+
