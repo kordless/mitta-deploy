@@ -8,7 +8,7 @@ The following systems are managed with this repo:
 - **fastener**: manages solr instances
 - **solr**: deploys solr instances
 - **grub**: crawl and image a website
-- **mitta-api**: APIs to tie together above systems
+- **mitta-api**: APIs for systems
 
 ## Checkout
 Checkout the mitta-deploy repository to a cloud shell terminal on Google Cloud:
