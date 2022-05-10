@@ -1,11 +1,14 @@
 # mitta-deploy
-This repository contains system dependencies to deploy a standalone crawling and indexing system for websites and document. An optional paid front-end is available via Mitta and runs on AppEngine.
+This repository contains system dependencies to deploy a standalone crawling and indexing system for which may index website or other documents. The system may be configured to use various machine learning models to assist with tagging and classification tasks for documents stored in the system.
+
+An optional paid front-end is available from Mitta Corp. for this system and runs on AppEngine.
 
 The following systems are managed with this repo:
 
-- *fastener*: manages solr instances
-- *solr*: deploys solr instances
-- *grub*: crawl and image a website
+- **fastener**: manages solr instances
+- **solr**: deploys solr instances
+- **grub**: crawl and image a website
+- **mitta**: APIs to tie together above systems
 
 ## Checkout
 Checkout the mitta-deploy repository to a cloud shell terminal on Google Cloud:
