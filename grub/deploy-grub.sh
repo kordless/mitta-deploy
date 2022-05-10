@@ -64,13 +64,13 @@ mkdir -p /opt/temp
 cd /opt/temp/
 
 curl https://storage.googleapis.com/mitta-deploy/chromedriver.zip > chromedriver.zip
+unzip chromedriver.zip
+mv chromedriver /opt/mitta-deploy/grub/
+
+curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
 dpkg -i google-chrome*.deb
 sudo apt-get install -f -y
 dpkg -i google-chrome*.deb
-
-curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
-unzip chromedriver.zip
-mv chromedriver /opt/mitta-deploy/grub/
 
 cd /opt/mitta-deploy/grub/
 cp nginx.conf.grub /etc/nginx/nginx.conf
