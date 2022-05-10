@@ -52,8 +52,8 @@ pip install google-auth-httplib2
 apt-get update
 
 cd /
-git clone https://github.com/kordless/grub-2.0
-cd /grub-2.0/fastener/
+git clone https://github.com/kordless/mitta-deploy
+cd /mitta-deploy/fastener/
 touch RUN_START_WEB
 
 EOF

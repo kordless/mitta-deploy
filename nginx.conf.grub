@@ -1,0 +1,24 @@
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+http {
+        upstream grub {
+                server localhost:7070;
+        }
+        server {
+                listen  8983;
+                location / {
+                        auth_basic "grub";
+                        auth_basic_user_file /etc/nginx/htpasswd;
+                        proxy_pass http://grub/;
+                }
+                
+                location /h {
+                        proxy_pass http://grub/h;
+                }
+        }
+}
