@@ -33,6 +33,7 @@ import json
 import sys
 
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from flask import Flask, render_template, make_response, request, abort, send_from_directory
 
@@ -57,7 +58,7 @@ def grub():
 	if '"' in url or "'" in url:
 		abort(404, "not found")
 
-	from selenium.webdriver.chrome.options import Options
+	# set options
 	chrome_options = Options()
 	chrome_options.add_argument('--no-sandbox')
 	chrome_options.add_argument('--disable-dev-shm-usage')
