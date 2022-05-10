@@ -82,7 +82,8 @@ echo $TOKEN >> /root/token
 
 systemctl restart nginx.service
 
-echo "starting grub"
+cd /opt/mitta-deploy/grub/
+screen -dmS grub bash -c "bash ./start-grub.sh"
 
 EOF
 )
