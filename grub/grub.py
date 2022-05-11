@@ -46,16 +46,18 @@ def grub():
 	chrome_options.add_argument('--disable-dev-shm-usage')
 	chrome_options.add_argument('--headless')
 
-	# create the driver and connect to page
+	# create the driver, set size and connect to page
 	driver = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
+	driver.set_window_size(1920, height)
 	driver.get(url)
 
-	# set the window up to full height
-	size = driver.get_window_size()
-	# width = driver.execute_script('return document.body.parentNode.scrollWidth')
-	height = driver.execute_script('return document.body.parentNode.scrollHeight')
-	driver.set_window_size(1080, height)
+	time.sleep(3) # let the page settle
 
+	# set the window up to full height
+	# size = driver.get_window_size()
+	# width = driver.execute_script('return document.body.parentNode.scrollWidth')
+	# height = driver.execute_script('return document.body.parentNode.scrollHeight')
+	
 	# set the output and screenshot
 	filename = "%s.png" % random_string(23)
 	el = driver.find_element_by_tag_name('body')
@@ -70,6 +72,9 @@ def grub():
 	file_object = open('./logs/mitta_upload.log', 'a')
 	file_object.write(response.text)
 	file_object.close()
+
+	# close the driver down
+	driver.quit()
 
 	return make_response(response.json())
 

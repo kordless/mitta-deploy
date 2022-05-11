@@ -33,58 +33,63 @@ gcloud compute firewall-rules create fastener-api --allow tcp:8383
 
 SCRIPT=$(cat <<EOF
 #!/bin/bash
-sudo su -
+if [ -d "/opt/mitta-deploy/" ]; then
+  echo "starting grub"
+  cd /opt/mitta-deploy/grub
+  screen -dmS grub bash -c "bash ./start-grub.sh"
+else
+  sudo su -
 
-apt-get update -y
-apt-get install unzip -y
-apt-get install build-essential -y
-apt-get install python-dev -y
-apt-get install python-setuptools -y
-apt-get install python3-pip -y
-apt-get install -y libappindicator1 fonts-liberation
-apt-get install apache2-utils -y
-apt-get install nginx -y
+  apt-get update -y
+  apt-get install unzip -y
+  apt-get install build-essential -y
+  apt-get install python-dev -y
+  apt-get install python-setuptools -y
+  apt-get install python3-pip -y
+  apt-get install libappindicator1 fonts-liberation -y
+  apt-get install apache2-utils -y
+  apt-get install nginx -y
 
-pip3 install --upgrade pip
-pip3 install flask
-pip3 install urllib3
-pip3 install httplib2
-pip3 install requests
-pip3 install gunicorn
-pip3 install setuptools
-pip3 install selenium
+  pip3 install --upgrade pip
+  pip3 install flask
+  pip3 install urllib3
+  pip3 install httplib2
+  pip3 install requests
+  pip3 install gunicorn
+  pip3 install setuptools
+  pip3 install selenium
 
-apt-get update -y
+  apt-get update -y
 
-mkdir -p /opt
-cd /opt/
-git clone https://github.com/kordless/mitta-deploy.git
+  mkdir -p /opt
+  cd /opt/
+  git clone https://github.com/kordless/mitta-deploy.git
 
-mkdir -p /opt/temp
-cd /opt/temp/
+  mkdir -p /opt/temp
+  cd /opt/temp/
 
-curl https://storage.googleapis.com/mitta-deploy/chromedriver.zip > chromedriver.zip
-unzip chromedriver.zip
-mv chromedriver /opt/mitta-deploy/grub/
+  curl https://storage.googleapis.com/mitta-deploy/chromedriver.zip > chromedriver.zip
+  unzip chromedriver.zip
+  mv chromedriver /opt/mitta-deploy/grub/
 
-curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
-dpkg -i google-chrome*.deb
-sudo apt-get install -f -y
-dpkg -i google-chrome*.deb
+  curl https://storage.googleapis.com/mitta-deploy/google-chrome_amd64.deb > google-chrome_amd64.deb
+  dpkg -i google-chrome*.deb
+  sudo apt-get install -f -y
+  dpkg -i google-chrome*.deb
 
-cd /opt/mitta-deploy/grub/
-cp nginx.conf.grub /etc/nginx/nginx.conf
+  cd /opt/mitta-deploy/grub/
+  cp nginx.conf.grub /etc/nginx/nginx.conf
 
-python3 get_token.py grub
+  python3 get_token.py grub
 
-source bidntoken
-echo $TOKEN >> /root/token
+  source bidntoken
+  echo $TOKEN >> /root/token
 
-systemctl restart nginx.service
+  systemctl restart nginx.service
 
-cd /opt/mitta-deploy/grub/
-screen -dmS grub bash -c "bash ./start-grub.sh"
-
+  cd /opt/mitta-deploy/grub/
+  screen -dmS grub bash -c "bash ./start-grub.sh"
+fi
 EOF
 )
 
