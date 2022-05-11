@@ -26,7 +26,9 @@ else
   pip3 install setuptools
   pip3 install selenium
 
+  add-apt-repository ppa:mozillateam/ppa -y
   apt-get update -y
+  apt-get install -y --no-install-recommends wget firefox-esr
 
   mkdir -p /opt
   cd /opt/
@@ -44,6 +46,10 @@ else
   sudo apt-get install -f -y
   dpkg -i google-chrome*.deb
 
+  curl https://storage.googleapis.com/mitta-config/geckodriver-v0.28.0-linux64.tar.gz > geckodriver.tar.gz
+  tar xzhf geckodriver.tar.gz
+  mv geckodriver /opt/mitta-deploy/grub
+  
   cd /opt/mitta-deploy/grub/
   cp nginx.conf.grub /etc/nginx/nginx.conf
 

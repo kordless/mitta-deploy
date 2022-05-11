@@ -50,7 +50,7 @@ def grub():
 	driver = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
 	driver.get(url)
 	
-	time.sleep(3) # let the page settle
+	time.sleep(2) # let the page settle
 	
 	# set the window up to full height
 	height = driver.execute_script('return document.body.parentNode.scrollHeight')
