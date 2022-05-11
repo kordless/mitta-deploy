@@ -52,6 +52,7 @@ else
 
   pip3 install --upgrade pip
   pip3 install flask
+  pip3 install gevent
   pip3 install urllib3
   pip3 install httplib2
   pip3 install requests
